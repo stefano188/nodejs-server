@@ -26,8 +26,8 @@ router.post('/', async (req, res) => {
         console.log('message', message);
 
         const dialogId = params['DIALOG_ID'];
-        const bot = params['BOT'];
-        const clientId = req['CLIENT_ID'];
+        const bot = data['BOT'];
+        const clientId = req.query['CLIENT_ID'];
 
 
         console.log('clientId', clientId);
