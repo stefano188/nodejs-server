@@ -26,17 +26,19 @@ router.post('/', async (req, res) => {
         console.log('message', message);
 
         const dialogId = params['DIALOG_ID'];
-        const bot = data['BOT'];
-        const clientId = req.query['CLIENT_ID'];
-
-        console.log('data.bot', bot);
-        console.log('clientId', clientId);
+        const toUserId = params['TO_USER_ID'];
         console.log('dialogId', dialogId);
-        console.log('BOT_ID', bot.BOT_ID);
-        console.log('BOT_CODE', bot.BOT_CODE);
+        console.log('toUserId', toUserId);
 
+        const clientId = req.query['CLIENT_ID'];
+        console.log('clientId', clientId);
+        
+        const bot = data['BOT'][toUserId];
+        console.log('data.bot', bot);
+        console.log('data.bot.BOT_ID', bot['BOT_ID']);
+        console.log('data.bot.BOT_CODE', bot['BOT_CODE']);
 
-    //    https://dentista21.bitrix24.it/rest/117/tzsqzxuuzg93ocpg/imbot.message.add.json?BOT_ID=10&CLIENT_ID=20&DIALOG_ID=30&MESSAGE=Ciao! Sono un chat bot LCS!
+  //    https://dentista21.bitrix24.it/rest/117/tzsqzxuuzg93ocpg/imbot.message.add.json?BOT_ID=10&CLIENT_ID=20&DIALOG_ID=30&MESSAGE=Ciao! Sono un chat bot LCS!
 
         // Call an external API
         const urlPath = dialogId + "/" + bot['BOT_CODE'] + "/imbot.message.add.json?BOT_ID="+bot['BOT_ID']+"&CLIENT_ID="+clientId+"&DIALOG_ID"+dialogId+'&MESSAGE=OHLA!';
