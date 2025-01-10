@@ -29,11 +29,11 @@ router.post('/', async (req, res) => {
         const bot = data['BOT'];
         const clientId = req.query['CLIENT_ID'];
 
-
+        console.log('data.bot', bot);
         console.log('clientId', clientId);
         console.log('dialogId', dialogId);
-        console.log('BOT_ID', bot['BOT_ID']);
-        console.log('BOT_CODE', bot['BOT_CODE']);
+        console.log('BOT_ID', bot.BOT_ID);
+        console.log('BOT_CODE', bot.BOT_CODE);
 
 
     //    https://dentista21.bitrix24.it/rest/117/tzsqzxuuzg93ocpg/imbot.message.add.json?BOT_ID=10&CLIENT_ID=20&DIALOG_ID=30&MESSAGE=Ciao! Sono un chat bot LCS!
