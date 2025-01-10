@@ -4,10 +4,11 @@ const axios = require('axios');
 const router = express.Router();
 
 
-const sendReplyToBitrixChat = async (authToken, dialogId, message, replyMessage, latency) => {
+const sendReplyToBitrixChat = async (authToken, botId, dialogId, message, replyMessage, latency) => {
     const url = 'https://dentista21.bitrix24.it/rest/imbot.message.add'; // Replace with your Bitrix24 domain
 
     const params = {
+        BOT_ID: botId,
         DIALOG_ID: dialogId,
         MESSAGE: message,
         ATTACH: [
@@ -17,6 +18,7 @@ const sendReplyToBitrixChat = async (authToken, dialogId, message, replyMessage,
     };
 
     try {
+        console.log('imbot.message.add params', params);
         const response = await axios.post(url, params, {
             headers: {
                 Authorization: `Bearer ${authToken}`
@@ -63,13 +65,14 @@ router.post('/', async (req, res) => {
         console.log('clientId', clientId);
         
         const bot = data['BOT'][toUserId];
+        const botId = bot['BOT_ID'];
         console.log('data.bot', bot);
-        console.log('data.bot.BOT_ID', bot['BOT_ID']);
+        console.log('data.bot.BOT_ID', botId);
         console.log('data.bot.BOT_CODE', bot['BOT_CODE']);
 
 
         // Send the reply
-        const result = await sendReplyToBitrixChat(clientId, dialogId, message, 'replyMessage', 1);
+        const result = await sendReplyToBitrixChat(clientId, botId, dialogId, message, 'replyMessage', 1);
         
         res.json({ success: true, data: result });
 
