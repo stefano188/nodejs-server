@@ -19,12 +19,12 @@ const sendReplyToBitrixChat = async (authToken, auth, botId, dialogId, message, 
 
     try {
         console.log('imbot.message.add params', params);
-        const response = await axios.post(url, params, auth);
-        // const response = await axios.post(url, params, {
-        //     headers: {
-        //         Authorization: `Bearer ${authToken}`
-        //     }
-        // });
+        // const response = await axios.post(url, params, auth);
+        const response = await axios.post(url, params, {
+            headers: {
+                Authorization: `Bearer ${auth}`
+            }
+        });
         console.log('Reply sent successfully:', response.data);
         return response.data;
     } catch (error) {
@@ -74,7 +74,8 @@ router.post('/', async (req, res) => {
 
 
         // Send the reply
-        const result = await sendReplyToBitrixChat(clientId, req.body.auth, botId, dialogId, message, 'replyMessage', 1);
+        const authToken = req.body.auth;
+        const result = await sendReplyToBitrixChat(clientId, authToken, botId, dialogId, message, 'replyMessage', 1);
         
         res.json({ success: true, data: result });
 
