@@ -8,7 +8,7 @@ const sendReplyToBitrixChat = async (authToken, auth, botId, dialogId, message, 
     const url = 'https://dentista21.bitrix24.it/rest/imbot.message.add'; // Replace with your Bitrix24 domain
 
     const params = {
-        
+        DIALOG_ID: "chat1",
         MESSAGE: message,
         ATTACH: [
             { MESSAGE: `reply: ${replyMessage}` },
@@ -24,7 +24,7 @@ const sendReplyToBitrixChat = async (authToken, auth, botId, dialogId, message, 
         
         const response = await axios.post(url, params, {
             headers: {
-                Authorization: `Bearer ${auth.application_token}`
+                Authorization: `Bearer ${auth}`
             }
         });
         // const response = await axios.post(url, params, {
