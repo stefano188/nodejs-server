@@ -20,9 +20,14 @@ const sendReplyToBitrixChat = async (authToken, auth, botId, dialogId, message, 
     try {
         console.log('imbot.message.add params', params);
         // const response = await axios.post(url, params, auth);
+        // const response = await axios.post(url, params, {
+        //     headers: {
+        //         Authorization: `Bearer ${auth}`
+        //     }
+        // });
         const response = await axios.post(url, params, {
             headers: {
-                Authorization: `Bearer ${auth}`
+                Authorization: `${auth}`
             }
         });
         console.log('Reply sent successfully:', response.data);
