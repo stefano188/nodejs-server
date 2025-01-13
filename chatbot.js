@@ -8,6 +8,7 @@ const sendReplyToBitrixChat = async (authToken, auth, botId, dialogId, message, 
     const url = 'https://dentista21.bitrix24.it/rest/imbot.message.add'; // Replace with your Bitrix24 domain
 
     const params = {
+        auth: auth,
         BOT_ID: botId,
         DIALOG_ID: dialogId,
         MESSAGE: message,
