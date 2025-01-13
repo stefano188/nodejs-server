@@ -26,9 +26,7 @@ const sendReplyToBitrixChat = async (authToken, auth, botId, dialogId, message, 
         //     }
         // });
         const response = await axios.post(url, params, {
-            headers: {
-                Authorization: auth
-            }
+            headers: `Bearer ${auth}`
         });
         console.log('Reply sent successfully:', response.data);
         return response.data;
