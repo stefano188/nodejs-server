@@ -5,7 +5,7 @@ const router = express.Router();
 
 
 const sendReplyToBitrixChat = async (authToken, auth, botId, dialogId, message, replyMessage, latency) => {
-    const url = 'https://dentista21.bitrix24.it/rest/117/tzsqzxuuzg93ocpg/imbot.message.add'; // Replace with your Bitrix24 domain
+    const url = 'https://dentista21.bitrix24.it/rest/imbot.message.add'; // Replace with your Bitrix24 domain
 
     const params = {
         BOT_ID: botId,
