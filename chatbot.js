@@ -22,9 +22,10 @@ const sendReplyToBitrixChat = async (authToken, auth, botId, dialogId, message, 
         console.log('auth', auth);
         console.log('auth.application_token', auth.application_token);
         
+        
         const response = await axios.post(url, params, {
             headers: {
-                Authorization: `Bearer ${auth}`
+                Authorization: `Bearer ${auth.application_token}`
             }
         });
         // const response = await axios.post(url, params, {
@@ -79,8 +80,8 @@ router.post('/', async (req, res) => {
 
 
         // Send the reply
-        const authToken = req.body.auth;
-        const result = await sendReplyToBitrixChat(clientId, authToken, botId, dialogId, message, 'replyMessage', 1);
+        const auth = req.body.auth;
+        const result = await sendReplyToBitrixChat(clientId, auth, botId, dialogId, message, 'replyMessage', 1);
         
         res.json({ success: true, data: result });
 
